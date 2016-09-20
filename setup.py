@@ -2,6 +2,7 @@ import os
 import sys
 from distutils.core import Extension, setup
 from Cython.Distutils import build_ext
+import numpy as np
 
 platform_supported = False
 for prefix in ['darwin', 'linux', 'bsd']:
@@ -35,7 +36,7 @@ setup(
     ext_modules=[Extension(
         "octomap",
         ["octomap/octomap.pyx"],
-        include_dirs = include_dirs,
+        include_dirs = [np.get_include()],
         library_dirs = lib_dirs,
         libraries=[
                 "dynamicedt3d",
